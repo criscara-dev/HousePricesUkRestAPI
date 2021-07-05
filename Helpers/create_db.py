@@ -30,7 +30,7 @@ connection.commit()
 
 #########  importing_from_csv file  #########
 # 3. inserting csv dat into SQLAlchemy DB
-with open('./data/ready_data.csv','r') as csv_file:
+with open("./csv_data/ready_data.csv", 'r') as csv_file:
     no_records = 0
     for row in csv_file:
           cursor.execute("INSERT INTO HousePrices VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", row.split(","))
