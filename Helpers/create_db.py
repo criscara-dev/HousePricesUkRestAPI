@@ -1,4 +1,4 @@
-import sqlite3, csv
+import sqlite3
 
 # 1. create the 'empty' DB table
 connection = sqlite3.connect("./houseprices.db")
@@ -8,18 +8,18 @@ cursor = connection.cursor()
 sql = """
  CREATE TABLE HousePrices (
     Id INTEGER PRIMARY KEY,
-    Code VARCHAR(30),
+    Code VARCHAR(32),
     price FLOAT,
-    date STRING(30),
-    postcode VARCHAR(30),
-    propType VARCHAR(30),
-    newBuild BOOLEAN(30),
-    estateType VARCHAR(30),
+    date VARCHAR(32),
+    postcode VARCHAR(16),
+    propType VARCHAR(16),
+    newBuild BOOLEAN,
+    estateType VARCHAR(16),
     number INTEGER,
-    street VARCHAR(30),
-    town VARCHAR(30),
-    district VARCHAR(30),
-    county VARCHAR(30)
+    street VARCHAR(32),
+    town VARCHAR(16),
+    district VARCHAR(16),
+    county VARCHAR(16)
     )
 """
 
