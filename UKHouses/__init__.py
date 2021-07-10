@@ -73,14 +73,9 @@ class HouseList(Resource):
     def get(self):
         # print(request.args)
         args = request.args
-        from_date = args["from"]
+        from_date = args.get('from')
         to_date = args.get("to")
-        if from_date != '' and to_date != '':
-            # if request.args:
-            args = request.args
-            from_date = args["from"]
-            to_date = args.get("to")
-
+        if request.method == 'GET' and 'from' in args is not None:
             connection = sqlite3.connect(db_path)
             cursor = connection.cursor()
             query = "SELECT * FROM HousePrices WHERE date BETWEEN ? AND ? ORDER BY date ASC"
