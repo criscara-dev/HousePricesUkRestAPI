@@ -30,6 +30,9 @@ app.config['PAGINATE_PAGE_SIZE'] = 20
 app.config['PAGINATE_DATA_OBJECT_KEY'] = "houses"
 pagination = Pagination(app, db)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 # MODELS -  a helper that help us ti retrieve HousePricesModel objects from the db - internal repr of an Entity
 class HousePricesModel(db.Model):
@@ -64,7 +67,7 @@ class House(Resource):
     def get(self, Id):
         houseId = HousePricesModel.query.filter_by(Id=Id).first()
         if houseId:
-            return {"house": houseId.json()}
+            return houseId.json(), 200
         else:
             return {'Id': None}, 404
 
@@ -75,7 +78,7 @@ class HouseList(Resource):
         args = request.args
         from_date = args.get('from')
         to_date = args.get("to")
-        if request.method == 'GET' and 'from' in args is not None:
+        if request.method == 'GET' and 'from' in args is not None and 'to' in args is not None:
             connection = sqlite3.connect(db_path)
             cursor = connection.cursor()
             query = "SELECT * FROM HousePrices WHERE date BETWEEN ? AND ? ORDER BY date ASC"
@@ -97,7 +100,7 @@ class HouseList(Resource):
 
 
 api.add_resource(Home, '/', '/index')
-api.add_resource(HouseList, '/houses')  # this is like: @app.route('/houses')
+api.add_resource(HouseList, '/houses')
 api.add_resource(House, '/house/<string:Id>')
 
 
