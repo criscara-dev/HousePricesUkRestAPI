@@ -23,17 +23,19 @@ sql = """
 """
 
 cursor.execute(sql)
-print('HousePrices has been created.')
+print("HousePrices has been created.")
 
 connection.commit()
 
 #########  importing_from_csv file  #########
 # 3. inserting csv dat into SQLAlchemy DB
-with open("../csv_data/complete.csv", 'r') as csv_file:
+with open("../csv_data/complete.csv", "r") as csv_file:
     no_records = 0
     for row in csv_file:
-          cursor.execute("INSERT INTO HousePrices VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", row.split(","))
-          connection.commit()
-          no_records += 1
+        cursor.execute(
+            "INSERT INTO HousePrices VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", row.split(",")
+        )
+        connection.commit()
+        no_records += 1
 connection.close()
-print(f'\n {no_records} Records transferred')
+print(f"\n {no_records} Records transferred")

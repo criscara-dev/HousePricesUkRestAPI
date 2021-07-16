@@ -127,24 +127,25 @@ class HouseList(Resource):
                 ),
             )
             housesInDateRange = []
+
+            def parse_house_record(row):
+                return {
+                    "Id": row[0],
+                    "code": row[1],
+                    "date": row[3],
+                    "postcode": row[4],
+                    "Property Type": row[5],
+                    "New built?": row[6],
+                    "Estate Type": row[7],
+                    "House/flat number": row[8],
+                    "Street Address": row[9],
+                    "town": row[10],
+                    "district": row[11],
+                    "county": row[12],
+                }
+
             for row in result:
-                housesInDateRange.append(
-                    {
-                        "Id": row[0],
-                        "code": row[1],
-                        "price": row[2],
-                        "date": row[3],
-                        "postcode": row[4],
-                        "Property Type": row[5],
-                        "New built?": row[6],
-                        "Estate Type": row[7],
-                        "House/flat number": row[8],
-                        "Street Address": row[9],
-                        "town": row[10],
-                        "district": row[11],
-                        "county": row[12],
-                    }
-                )
+                housesInDateRange.append(parse_house_record(row))
             connection.close()
             return pagination.paginate(housesInDateRange, page_fields)
 
