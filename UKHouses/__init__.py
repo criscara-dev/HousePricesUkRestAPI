@@ -48,18 +48,18 @@ class HousePricesModel(db.Model):
     def json(self) -> ItemJSON:
         return {
             "Id": self.Id,
-            "code": self.Code,
-            "price": self.price,
-            "date": self.date.isoformat(),
-            "postcode": self.postcode,
+            "Code": self.Code,
+            "Price": self.price,
+            "Date": self.date.isoformat(),
+            "Postcode": self.postcode,
             "Property Type": self.propType,
             "New built?": self.newBuild,
             "Estate Type": self.estateType,
             "House/flat number": self.number,
             "Street Address": self.street,
-            "town": self.town,
-            "district": self.district,
-            "county": self.county,
+            "Town": self.town,
+            "District": self.district,
+            "County": self.county,
         }
 
     @classmethod
@@ -72,18 +72,18 @@ Resource fields for marshalling
 """
 page_fields = {
     "Id": fields.String,
-    "code": fields.String,
-    "price": fields.String,
-    "date": fields.String,
-    "postcode": fields.String,
+    "Code": fields.String,
+    "Price": fields.String,
+    "Date": fields.String,
+    "Postcode": fields.String,
     "Property Type": fields.String,
     "New built?": fields.String,
     "Estate Type": fields.String,
     "House/flat number": fields.String,
     "Street Address": fields.String,
-    "town": fields.String,
-    "district": fields.String,
-    "county": fields.String,
+    "Town": fields.String,
+    "District": fields.String,
+    "County": fields.String,
 }
 
 
@@ -125,17 +125,17 @@ class HouseList(Resource):
             def parse_house_record(row):
                 return {
                     "Id": row[0],
-                    "code": row[1],
-                    "date": row[3],
-                    "postcode": row[4],
+                    "Code": row[1],
+                    "Date": row[3],
+                    "Postcode": row[4],
                     "Property Type": row[5],
                     "New built?": row[6],
                     "Estate Type": row[7],
                     "House/flat number": row[8],
                     "Street Address": row[9],
-                    "town": row[10],
-                    "district": row[11],
-                    "county": row[12],
+                    "Town": row[10],
+                    "District": row[11],
+                    "County": row[12],
                 }
 
             for row in result:
