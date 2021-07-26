@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The UK House Prices API</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <header>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('about') }}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('documentation') }}">Documentation</a>
+        </li>
+      </ul>
+    </header>
+    <hr />
+    <section>
+      <h1>The UK House Prices API</h1>
+    </section>
+    <hr />
+    <div class="container">{% block content %} {% endblock %}</div>
+    <hr />
+
+    <footer>
+      <div>
+        <a href="https://twitter.com/criscaratti"><img src="../static/twitter-logo.png" alt="Twitter logo" /><b>follow</b></a
+        ><br />
+        <a href="https://github.com/criscara-dev"><img src="../static/github-logo-silhouette-in-a-square.png" alt="GitHub logo" /><b>follow</b></a>
+      </div>
+      <small>&copy; Created & Maintained by Cristian Caratti ©2021 </small>
+    </footer>
+    <script src="../static/script.js"></script>
+  </body>
+</html>

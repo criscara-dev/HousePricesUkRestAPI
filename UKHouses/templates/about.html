@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+
+<section>
+    <h1>What is this?</h1>
+</section>
+<section>
+    <p>
+        <p>The UK House Prices API is the UK's first quantified and programmatically-accessible data source for all the data from the <a href="https://landregistry.data.gov.uk/">HM Land Registry</a>. <br>
+            We've taken all the rich contextual data from the HM Land Registry ina form of a <i>csv</i> file, and formatted into something easier to consume with software. <br>
+             Then we build upon an API on the front so you can access it.</p>
+             <p>We've formatted this data in JSON and exposed it to you in a RESTish implementation that allows you to programmatically collect and measure the data.</p> 
+            Check out the documentation to get started consuming swapi data</p>
+</section>
+<section>
+    <h2>What are the features?</h2>
+    <div>
+        We're using <a href="https://flask.palletsprojects.com/en/2.0.x/quickstart/">Flask REST Framework </a>  to serve a RESTish API to you. The data is all formatted in <a href="https://www.json.org/json-en.html">JSON</a> <!-- and we also support JSON Schema for programmatically understanding the attributes of each resource.-->
+    </div>
+</section>
+<section>
+    <h2>Author</h2>
+    <div>I am Cristian Caratti, a Software Developer passionate about problem solving.</div>
+</section>
+</div>
+{% endblock %}

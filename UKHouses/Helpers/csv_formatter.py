@@ -5,16 +5,21 @@ import csv
 
 # 1. run this file!
 
+
 def prettify_no_quotes():
-    reader = csv.reader(open("../csv_data/data-2021.csv", mode="rt"), skipinitialspace=True)
-    writer = csv.writer(open("../csv_data/temp.csv", mode="wt"), quoting=csv.QUOTE_NONE, escapechar='\\')
+    reader = csv.reader(
+        open("../csv_data/data-2021.csv", mode="rt"), skipinitialspace=True
+    )
+    writer = csv.writer(
+        open("../csv_data/temp.csv", mode="wt"), quoting=csv.QUOTE_NONE, escapechar="\\"
+    )
     writer.writerows(reader)
 
 
 def prettify_no_parenthesis():
     with open("../csv_data/temp.csv") as file:
         data = file.read().replace("{", "").replace("}", "")
-        with open("../csv_data/cleaned.csv", mode='w') as newfile:
+        with open("../csv_data/cleaned.csv", mode="w") as newfile:
             newfile.write(data)
         # print(data)
 
