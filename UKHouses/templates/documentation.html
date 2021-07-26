@@ -1,0 +1,261 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <h1>Documentation</h1>
+
+  <section>
+    <h2>Introduction</h2>
+    <p>
+      Welcome to the UK House Prices API; <br />
+      This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests. Read through the getting started section before you dive in. Most of your problems should be solved just by reading through it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Getting Started</h2>
+    <p>Let's make our first API request to the UK House Prices API. Open up a terminal and use <a href="https://curl.se/">curl</a> or <a href="https://www.postman.com/">Postman</a> to make an API request for a resource. In the example below, we're trying to get the first House in the collection, identified by the numeric Id:</p>
+    <pre><code>"http://127.0.0.1:5000/house/1</code></pre>
+    <p>Here is the repsonse we get:</p>
+    <pre><code>{
+  "Id":1
+  "code":"BEF7EBBF-503E-7A76-E053-6B04A8C092F7"
+  "price":1500000
+  "date":"2021-01-08T00:00:00"
+  "postcode":"SW19 8BY"
+  "Property Type":"T"
+  "New built?":"true"
+  "Estate Type":"F"
+  "House/flat number":"12"
+  "Street Address":"MELROSE AVENUE"
+  "town":"LONDON"
+  "district":"MERTON"
+  "county":"GREATER LONDON"
+  }</code></pre>
+  </section>
+  <section>
+    <h2>Base URL</h2>
+    <p>
+      The Base URL is the root URL for all of the API, if you ever make a request and you get back a 404 NOT FOUND response then check the Base URL first. <br />
+      The Base URL for the UK House Prices API is:
+    </p>
+    <pre><code>"http://127.0.0.1:5000/</code></pre>
+  </section>
+  <section>
+    <h2>Authentication</h2>
+    <p>UK House Prices API is a completely open API. No authentication is required to query and get data. This also means that we've limited what you can do to just GET-ing the data. If you find a mistake in the data, then <a href="https://twitter.com/criscaratti">tweet</a> the author or email him.</p>
+  </section>
+  <section>
+    <h2>Searching</h2>
+    <p>Since the DB size and related features, all resources support pagination and a search parameter that filters the set of resources returned. This allows you to make queries like:</p>
+    <pre><code>"http://127.0.0.1:5000/houses?page=3&size=10</code></pre>
+    <p>All searches will use case-sensitive matches on the set of search fields.</p>
+  </section>
+  <section>
+    <h2>JSON</h2>
+    <p>JSON is the standard data format provided by the API by default.</p>
+  </section>
+  <hr />
+  <section>
+    <h2>Resources - Endpoints</h2>
+    <p><a href="http://127.0.0.1:5000/houses" target="_blank">/houses</a></p>
+    <p><a href="http://127.0.0.1:5000/houses?page=2" target="_blank">/houses?page=2</a></p>
+    <p><a href="http://127.0.0.1:5000/houses?page=2&size=10" target="_blank">/houses?page=2&size=10</a></p>
+    <p><a href="http://127.0.0.1:5000/houses?from=2021-01-01&to=2021-01-30" target="_blank">/houses?from=2021-01-01&to=2021-01-30</a></p>
+    <!-- <p><a href="http://127.0.0.1:5000/houses?from=2021-01-01&to=2021-01-30?page=2" target="_blank">/houses?from=2021-01-01&to=2021-01-30?page=2</a></p>
+  <p><a href="http://127.0.0.1:5000/houses?from=2021-01-01&to=2021-01-30?page=2&size=10" target="_blank">/houses?from=2021-01-01&to=2021-01-30?page=2&size=10</a></p> -->
+  </section>
+  <section>
+    <h2>House via Id</h2>
+    <p>Example request:</p>
+    <pre><code>http://127.0.0.1:5000/houses?from=2021-01-01&to=2021-01-30?page=1&size=5</code></pre>
+    <p>Example response, try it live <a href="http://127.0.0.1:5000/index.html">here:</a></p>
+  </section>
+  <section>
+    <h2>Houses</h2>
+    <p>Example request:</p>
+    <pre><code>http://127.0.0.1:5000/houses?from=2021-01-01&to=2021-01-30?page=1&size=5</code></pre>
+    <p>Example response:</p>
+    <pre><code>
+{
+  "houses": [
+  {
+  "Id": "261",
+  "code": "C18F412B-B437-81A6-E053-6B04A8C0AD18",
+  "price": null,
+  "date": "2021-01-01 00:00:00",
+  "postcode": "IP23 7BD",
+  "Property Type": "T",
+  "New built?": "N",
+  "Estate Type": "F",
+  "House/flat number": "38",
+  "Street Address": "CHURCH STREET",
+  "town": "EYE",
+  "district": "MID SUFFOLK",
+  "county": "SUFFOLK\n"
+  },
+  {
+  "Id": "4485",
+  "code": "BEF7EBBF-4F86-7A76-E053-6B04A8C092F7",
+  "price": null,
+  "date": "2021-01-01 00:00:00",
+  "postcode": "KT8 0AE",
+  "Property Type": "D",
+  "New built?": "N",
+  "Estate Type": "F",
+  "House/flat number": "17",
+  "Street Address": "RIVERSIDE AVENUE",
+  "town": "EAST MOLESEY",
+  "district": "ELMBRIDGE",
+  "county": "SURREY\n"
+  },
+  {
+  "Id": "8192",
+  "code": "BEF7EBBF-3E58-7A76-E053-6B04A8C092F7",
+  "price": null,
+  "date": "2021-01-01 00:00:00",
+  "postcode": "BR6 0EN",
+  "Property Type": "S",
+  "New built?": "N",
+  "Estate Type": "F",
+  "House/flat number": "47",
+  "Street Address": "BROOMHILL ROAD",
+  "town": "ORPINGTON",
+  "district": "BROMLEY",
+  "county": "GREATER LONDON\n"
+  },
+  {
+  "Id": "32121",
+  "code": "BEF7EBBF-825E-7A76-E053-6B04A8C092F7",
+  "price": null,
+  "date": "2021-01-01 00:00:00",
+  "postcode": "SN8 3AT",
+  "Property Type": "T",
+  "New built?": "N",
+  "Estate Type": "F",
+  "House/flat number": "26",
+  "Street Address": "EASTCOURT ROAD",
+  "town": "MARLBOROUGH",
+  "district": "WILTSHIRE",
+  "county": "WILTSHIRE\n"
+  },
+  {
+  "Id": "40142",
+  "code": "BC8936BC-3FBB-0E2C-E053-6C04A8C0DBF4",
+  "price": null,
+  "date": "2021-01-01 00:00:00",
+  "postcode": "SK23 0QZ",
+  "Property Type": "O",
+  "New built?": "N",
+  "Estate Type": "F",
+  "House/flat number": "UNIT 6",
+  "Street Address": "BOWDEN HEY ROAD",
+  "town": "HIGH PEAK",
+  "district": "HIGH PEAK",
+  "county": "DERBYSHIRE\n"
+  }
+  ],
+  "pagination": {
+  "currentPage": "/houses?from=2021-01-01&to=2021-01-30%3Fpage%3D1&size=5&page=1",
+  "hasNext": true,
+  "hasPrev": false,
+  "next": "/houses?from=2021-01-01&to=2021-01-30%3Fpage%3D1&size=5&page=2",
+  "pages": 12936,
+  "size": 5,
+  "totalElements": 64676
+  }
+}</code></pre>
+  </section>
+  <section>
+    <h2>Attributes</h2>
+    <div>
+      <li>
+        <span> <code class="attributes"> Id</code></span
+        ><span><i>string -- </i> </span><span>The numeric Id for the House data. </span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Code</code> </span><span><i>string -- </i></span><span>The Code Identifier from the HM Land Registry.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Price</code> </span><span><i>string -- </i></span><span>The price at which the <i>house</i> has been sold last time.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Date</code> </span><span><i>string -- </i></span><span>The date the <i>house</i> has been sold the last time.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Postcode</code> </span><span><i>string -- </i></span><span>The <i>house</i> Postcode.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Property Type</code> </span><span><i>string -- </i></span
+        ><span
+          >The <i>house</i> type property; possible values are:
+          <ul>
+            <li>
+              <strong><i>D</i></strong> for: detached
+            </li>
+            <li>
+              <strong><i>S</i></strong> for: semi-detached
+            </li>
+            <li>
+              <strong><i>T</i></strong> for: terraced
+            </li>
+            <li>
+              <strong><i>F</i></strong> for: flat/maisonette
+            </li>
+            <li>
+              <strong><i>O</i></strong> for: other
+            </li>
+          </ul></span
+        >
+      </li>
+      <li>
+        <span> <code class="attributes"> New built?</code> </span><span><i>string -- </i></span
+        ><span
+          >The <i>house</i> type property; possible values are:
+          <ul>
+            <li>
+              <strong><i>True</i></strong> for: new-build
+            </li>
+            <li>
+              <strong><i>False</i></strong> for: not new-build
+            </li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Estate Type</code> </span><span><i>string -- </i></span
+        ><span
+          >The <i>house</i> Estate type property; possible values are:
+          <ul>
+            <li>
+              <strong><i>F</i></strong> for: freehold
+            </li>
+            <li>
+              <strong><i>L</i></strong> for: leasehold
+            </li>
+          </ul>
+        </span>
+      </li>
+      <li>
+        <span> <code class="attributes"> House/flat number</code> </span><span><i>string -- </i></span><span>The <i>house</i> or <i>flat number</i>. </span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Street Address</code> </span><span><i>string -- </i></span><span>The <i>house</i> street address.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> Town</code> </span><span><i>string -- </i></span><span>The <i>Town</i> in which the <i>house</i> is located.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> District</code> </span><span><i>string -- </i></span><span>The <i>District</i> in which the <i>house</i> is located.</span>
+      </li>
+      <li>
+        <span> <code class="attributes"> County</code> </span><span><i>string -- </i></span><span>The <i>County</i> in which the <i>house</i> is located.</span>
+      </li>
+    </div>
+  </section>
+  <section>
+    <h2>Pagination Object</h2>
+    <p>
+      Check the <stron><i>flask-rest-paginate 1.1.3</i></stron> Module Documentation <a href="https://pypi.org/project/flask-rest-paginate/">here</a>.
+    </p>
+  </section>
+</div>
+{% endblock %}

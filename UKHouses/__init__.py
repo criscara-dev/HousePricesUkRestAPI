@@ -88,12 +88,6 @@ page_fields = {
 
 
 # RESOURCES - external repr of an Entity, it maps endpoints
-class Home(Resource):
-    @classmethod
-    def get(cls):
-        return render_template("index.html"), 200
-
-
 class House(Resource):
     @classmethod
     def get(cls, Id):
@@ -154,6 +148,32 @@ class HouseList(Resource):
             return pagination.paginate([hp.json() for hp in houseprices], page_fields)
 
 
-api.add_resource(Home, "/", "/index")
 api.add_resource(HouseList, "/houses")
 api.add_resource(House, "/house/<string:Id>")
+
+
+@app.route("/")
+def index():
+    return render_template("index.html"), 200
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html"), 200
+
+
+@app.route("/documentation")
+def documentation():
+    return render_template("documentation.html"), 200
+
+
+# errors pages
+@app.errorhandler(404)
+def error_404(error):
+    """
+    Error for pages not found.
+    """
+    return render_template("404.html"), 404
+
+
+app.register_error_handler(404, error_404)
